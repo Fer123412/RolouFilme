@@ -1,20 +1,23 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/styleglobal.css'%}" />
     <title>RolouFilmes</title>
   </head>
   <body>
     <nav>
-      <a href="{% url 'home' %}">Inicio</a>
+      <img src="{% static 'midia/name_title.png' %}" alt="logo" />
+      <a href="{% url 'home' %}">Home</a>
       {% if user.is_authenticated %} Ola, {{user.username}}
       <form action="{% url 'logout' %}" method="post" style="display: inline">
         {% csrf_token %}
         <button type="submit">Sair</button>
       </form>
       {% else %}
-      <a href="{% url 'login' %}">Entrar</a>
+      <a href="{% url 'login' %}">Login</a>
       <a href="{% url 'cadastro' %}">Cadastrar</a>
       {% endif %}
     </nav>

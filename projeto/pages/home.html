@@ -1,3 +1,9 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Bem - vindo ao RolouFIlme caceteeee</h1>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<img src="{% static 'midia/name_title.png'%}" alt="logo" />
+
+<p>
+  Se voce gosta de filmes venha comentar a sua experiência aqui com outros que
+  tenham a mesma opinião que você.
+</p>
+
 {% endblock %}
