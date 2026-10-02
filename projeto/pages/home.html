@@ -1,19 +1,19 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
 <link rel="stylesheet" href="{% static 'styles/stylehome.css' %}" />
-{% block main %}
-<main>
-  <section>
-    <div class="container">
-      <img
-        src="{% static 'midia/name_title.png'%}"
-        alt="logo"
-        class="logo_inicio"
-      />
-      <p>
-        Aqui você pode compartilhar suas opiniões sobre filmes e interagir com
-        outros cinéfilos.
-      </p>
-    </div>
-  </section>
-</main>
-{% endblock %} {% endblock %}
+<section class="home">
+  <img
+    src="{% static 'midia/name_title.png' %}"
+    alt="logo"
+    class="logo_inicio"
+  />
+  <p>
+    Se você gosta de filmes, venha comentar a sua experiência aqui com outros
+    que tenha a mesma opinião.
+  </p>
+  <hr />
+</section>
+<section>
+  <h1>Filmes em destaque</h1>
+  <div></div>
+</section>
+{% endblock %}

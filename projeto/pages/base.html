@@ -24,11 +24,7 @@
       {% endif %}
     </nav>
 
-    {% block main %}
-    <main>
-      <section></section>
-    </main>
-    {% endblock %} {% block content %} {% endblock %}
+    <main>{% block content %}{% endblock %}</main>
     <footer class="footer">
       <img src="{% static 'midia/name_title.png' %}" alt="logo" class="logo" />
       <div>

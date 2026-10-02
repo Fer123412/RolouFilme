@@ -3,9 +3,14 @@
 }
 
 section {
-  background-color: #1a8ba2;
+  font-size: 22px;
+  color: white;
+  padding: 20vh 10vh;
+  text-align: center;
 }
 
-.container {
-  background-color: #f8a0a0;
+hr {
+  border: 1px solid white;
+  margin: 30px auto;
+  width: 50%;
 }
