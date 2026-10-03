@@ -3,15 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/styleglobal.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/stylelogin.css' %}" />
     <title>Document</title>
   </head>
   <body>
-    {% extends 'base.html' %} {% block content %}
-    <h1>Entrar</h1>
-    <form method="post">
-      {% csrf_token %} {{ form.as_p }}
-      <button type="submit">Entrar</button>
-    </form>
-    {% endblock %}
+    <div class="login-container">
+      <h1 class="login-title">Bem-vindo</h1>
+      <p>Por favor, coloque seu nome e senha para entrar</p>
+      <form method="post" class="login-form">
+        {% if form.errors %}
+        <p class="error">Por favor, corrija os erros abaixo.</p>
+        {% endif %} {% csrf_token %}
+        <label for="id_username">Nome:</label>
+        <input
+          type="text"
+          id="id_username"
+          name="username"
+          placeholder="Digite seu nome"
+          required
+        />
+
+        <label for="id_password">Senha:</label>
+        <input
+          type="password"
+          id="id_password"
+          name="password"
+          placeholder="Digite sua senha"
+          required
+        />
+
+        <button type="submit">Entrar</button>
+      </form>
+    </div>
   </body>
 </html>
