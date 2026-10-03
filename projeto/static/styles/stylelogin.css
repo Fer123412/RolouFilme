@@ -21,3 +21,51 @@ body {
   font-weight: 400;
   font-style: normal;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.login-box {
+  background-color: rgba(212, 104, 104, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+  gap: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: white;
+}
+
+input {
+  padding: 5px;
+  border: 1px solid #ff5656;
+  border-radius: 6px;
+  background: transparent;
+}
+
+button {
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: transparent;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff0000;
+  color: white;
+  transition: 0.3s;
+}

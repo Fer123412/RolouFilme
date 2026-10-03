@@ -10,32 +10,34 @@
   </head>
   <body>
     <div class="login-container">
-      <h1 class="login-title">Bem-vindo</h1>
-      <p>Por favor, coloque seu nome e senha para entrar</p>
-      <form method="post" class="login-form">
-        {% if form.errors %}
-        <p class="error">Por favor, corrija os erros abaixo.</p>
-        {% endif %} {% csrf_token %}
-        <label for="id_username">Nome:</label>
-        <input
-          type="text"
-          id="id_username"
-          name="username"
-          placeholder="Digite seu nome"
-          required
-        />
+      <div class="login-box">
+        <h1 class="login-title">Bem-vindo</h1>
+        <p>Por favor, coloque seu nome e senha para entrar</p>
+        <form method="post" class="login-form">
+          {% if form.errors %}
+          <p class="error">Por favor, corrija os erros abaixo.</p>
+          {% endif %} {% csrf_token %}
+          <label for="id_username">Nome:</label>
+          <input
+            type="text"
+            id="id_username"
+            name="username"
+            placeholder="Digite seu nome"
+            required
+          />
 
-        <label for="id_password">Senha:</label>
-        <input
-          type="password"
-          id="id_password"
-          name="password"
-          placeholder="Digite sua senha"
-          required
-        />
+          <label for="id_password">Senha:</label>
+          <input
+            type="password"
+            id="id_password"
+            name="password"
+            placeholder="Digite sua senha"
+            required
+          />
 
-        <button type="submit">Entrar</button>
-      </form>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
