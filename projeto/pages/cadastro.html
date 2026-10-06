@@ -5,22 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/styleglobal.css' %}" />
+    <link rel="stylesheet" href="{% static 'styles/stylelogin.css' %}" />
     <title>Cadastro</title>
   </head>
   <body>
-    <h1>Cadastro</h1>
-    <form method="post">
-      {% csrf_token %}
-      <label for="id_username">Nome:</label>
-      <input type="text" name="username" id="id_username" />
+    <div class="login-container">
+      <div class="login-box">
+        <div class="login-header">
+          <h1 class="login-title">Bem-vindo!</h1>
+          <p>Por favor, coloque seu nome e senha para cadastrar</p>
+        </div>
+        <form method="post" class="login-form">
+          {% if form.errors %}
+          <div class="form-errors">
+            <p>Por favor, corrija os erros abaixo:</p>
+            {{ form.errors }}
+          </div>
+          {% endif %} {% csrf_token %}
+          <label for="id_username">Nome:</label>
+          <input
+            type="text"
+            name="username"
+            id="id_username"
+            placeholder="Nome Ex:fulano123"
+          />
 
-      <label for="id_password">Senha:</label>
-      <input type="password" name="password1" id="id_password" />
+          <label for="id_password">Senha:</label>
+          <input
+            type="password"
+            name="password1"
+            id="id_password"
+            placeholder="Senha Ex:123456"
+          />
 
-      <label for="id_password_confirm">Confirmar Senha:</label>
-      <input type="password" name="password2" id="id_password_confirm" />
+          <label for="id_password_confirm">Confirmar Senha:</label>
+          <input
+            type="password"
+            name="password2"
+            id="id_password_confirm"
+            placeholder="Senha Ex:123456"
+          />
 
-      <button type="submit">Cadastrar</button>
-    </form>
+          <button type="submit">Cadastrar</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

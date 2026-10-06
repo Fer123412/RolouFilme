@@ -13,10 +13,11 @@
       <a href="{% url 'home' %}">Home</a>
       <a href="">Comentarios</a>
       <a href="">Filmes</a>
-      {% if user.is_authenticated %} Ola, {{user.username}}
+      {% if user.is_authenticated %}
+      <span class="username">{{user.username}}</span>
       <form action="{% url 'logout' %}" method="post" style="display: inline">
         {% csrf_token %}
-        <button type="submit">Sair</button>
+        <button type="submit" class="botao_sair">Sair</button>
       </form>
       {% else %}
       <a href="{% url 'login' %}" class="botoes_login">Login</a>
