@@ -6,13 +6,15 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'styles/styleglobal.css' %}" />
     <link rel="stylesheet" href="{% static 'styles/stylelogin.css' %}" />
-    <title>Document</title>
+    <title>Login</title>
   </head>
   <body>
     <div class="login-container">
       <div class="login-box">
-        <h1 class="login-title">Bem-vindo</h1>
-        <p>Por favor, coloque seu nome e senha para entrar</p>
+        <div class="login-header">
+          <h1 class="login-title">Bem-vindo!</h1>
+          <p>Por favor, coloque seu nome e senha para entrar</p>
+        </div>
         <form method="post" class="login-form">
           {% if form.errors %}
           <p class="error">Por favor, corrija os erros abaixo.</p>

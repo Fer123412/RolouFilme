@@ -25,47 +25,74 @@ body {
 .login-form {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: stretch;
   gap: 5px;
   margin-top: 20px;
 }
 
 .login-box {
-  background-color: rgba(212, 104, 104, 0.7);
-  padding: 20px;
+  width: 350px;
+  background: fixed linear-gradient(#ff7d7d64, #3a0606);
+  padding: 40px;
   border-radius: 10px;
+  border: 1px solid #ff0000;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-content: center;
-  gap: 10px;
+  gap: 20px;
+
+  box-shadow: 0px 0px 20px #ff00008c;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 label {
+  text-align: left;
   font-size: 14px;
   color: white;
 }
 
 input {
-  padding: 5px;
+  padding: 10px;
   border: 1px solid #ff5656;
   border-radius: 6px;
   background: transparent;
 }
 
 button {
+  width: 50%;
   font-family: "Bebas Neue", sans-serif;
-  margin-top: 10px;
-  padding: 8px 20px;
+  margin-top: 30px;
+  padding: 3px 10px;
   background-color: transparent;
   color: #ff0000;
   border: 2px solid #ff0000;
   border-radius: 6px;
   cursor: pointer;
+  align-self: center;
 }
 
 button:hover {
   background-color: #ff0000;
   color: white;
   transition: 0.3s;
+}
+
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-box {
+  animation: entrada 0.8s ease-out;
 }
