@@ -12,7 +12,20 @@
   </p>
   <hr />
 </section>
-<p class="titulo">Filmes em destaque</p>
-<div></div>
+<section>
+  <p class="titulo">Filmes em destaque</p>
+  <div class="filmes_container">
+    {% for filme in filmes %}
+    <a href="{% url 'filme_detalhe' filme.id %}" class="card_film">
+      {% if filme.poster_url %}
+      <img src="{{ filme.poster_url }}" alt="{{ filme.titulo }}" />
+      {% endif %}
+    </a>
+    {% empty %}
+    <p>Nenhum filme cadastrado ainda nessa porraa</p>
+    {% endfor %}
+  </div>
+  <div></div>
 
-{% endblock %}
+  {% endblock %}
+</section>

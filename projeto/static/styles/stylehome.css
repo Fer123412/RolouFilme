@@ -14,3 +14,33 @@ hr {
   margin: 30px auto;
   width: 50%;
 }
+
+.filmes_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px 5vw;
+}
+
+.card_film img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+  transition: box-shadow 0.3s;
+}
+
+.card_film span {
+  display: block;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.card_film:hover {
+  color: aliceblue;
+  animation: none;
+  transform: translateX(-10px);
+}
+
+.card_film:hover img {
+  box-shadow: 7px 7px 1px red;
+}
