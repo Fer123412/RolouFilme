@@ -1,1 +1,46 @@
-<h1>pagina dos detalahaes aqui seu ze bct</h1>
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'midia/stylefilme.css' %}" />
+
+<section class="filme_dados">
+  {% if movie.poster_url %}
+  <div class="capa_filme">
+    <img
+      src="{{ movie.poster_url }}"
+      alt="{{movie.titulo}}"
+      class="filme_poster"
+    />
+  </div>
+  {% endif %}
+
+  <div class="filme_dados">
+    <h1>{{ movie.titulo }} - {{movie.ano}}</h1>
+    <div class="abas">
+      <button type="button" class="aba ativa" data-alvo="aba-sinopse">
+        SINOPSE
+      </button>
+      <span class="aba-sep">|</span>
+      <button type="button" class="aba" data-alvo="aba-info">
+        INFORMAÇÕES
+      </button>
+    </div>
+
+    <div id="aba-sinopse" class="aba-conteudo ativo">
+      <p class="filme-sinopse">{{movie.sinopse}}</p>
+    </div>
+
+    <div id="aba-info" class="aba-conteudo">
+      <ul class="lista_info">
+        <li>
+          <strong>Direção:</strong> {{ movie.diretor|default:"Não informado" }}
+        </li>
+        <li>
+          <strong>Duração:</strong> {% if movie.duracao %}{{movie.duracao}}
+          min{% else %} Não informado{% endif %}
+        </li>
+        <li><strong>Ano:</strong> {{ movie.ano }}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<hr />
+{% endblock %}

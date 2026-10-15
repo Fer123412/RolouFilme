@@ -19,15 +19,38 @@ body {
   justify-content: center;
 }
 
+/*              NAV                */
 .logo {
-  width: 90px;
+  width: 20%;
 }
 
 nav {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 50px;
+  padding: 15px 40px;
+}
+
+.nav_esquerda {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.nav_centro {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav_direita {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav_direita img {
+  width: 67%;
 }
 
 a {
@@ -67,19 +90,6 @@ a:hover {
   transition: 0.5s;
 }
 
-.footer {
-  background: linear-gradient(#2c2c2c, #1f1f1f);
-  color: white;
-  padding: 20px;
-  border-top: 1px solid #414141;
-
-  display: flex;
-  justify-content: flex-end;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
 .username {
   color: white;
   font-size: 20px;
@@ -101,4 +111,53 @@ a:hover {
   background-color: #ff0000;
   color: white;
   transition: 0.5s;
+}
+
+/*                   FOOTER                        */
+.footer {
+  background: linear-gradient(#2c2c2c, #1f1f1f);
+  color: white;
+  padding: 20px;
+  border-top: 1px solid #414141;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-topo {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+}
+
+.footer-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-coluna a {
+  font-size: 15px;
+  animation: none;
+}
+
+.footer-redes {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-redes .logo {
+  width: 32px; /* 90px é grande demais para ícone */
+}
+
+.footer-base {
+  border-top: 1px solid #414141;
+  padding-top: 15px;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
 }

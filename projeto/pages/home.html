@@ -7,13 +7,13 @@
     class="logo_inicio"
   />
   <p>
-    Se você gosta de filmes, venha comentar a sua experiência aqui com outros
-    que tenha a mesma opinião.
+    Assistiu a um filme e ficou com muito a dizer? Aqui é o seu lugar. Escreva
+    reviews, dê sua nota, comente a opinião de outros cinéfilos e descubra quem
+    pensa como você (ou quem discorda totalmente!).
   </p>
-  <hr />
 </section>
+<hr />
 <section>
-  <p class="titulo">Filmes em destaque</p>
   <div class="filmes_container">
     {% for filme in filmes %}
     <a href="{% url 'filme_detalhe' filme.id %}" class="card_film">
@@ -27,5 +27,6 @@
   </div>
   <div></div>
 
+  <hr />
   {% endblock %}
 </section>

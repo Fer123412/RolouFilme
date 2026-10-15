@@ -12,7 +12,7 @@ from .tmdb import completar_detalhes
 
 
 def home(request):
-    filmes = Movie.objects.order_by('-id')[:12]
+    filmes = Movie.objects.order_by('-id')[:20]
     return render(request,'home.html', {'filmes': filmes})
 
 def lista_filmes(request):
