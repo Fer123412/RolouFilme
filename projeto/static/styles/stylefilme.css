@@ -1,3 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 .filme_dados {
   color: white;
+  display: flex;
+  padding: 10vh;
+  gap: 40px;
+}
+
+.filme_poster {
+  width: 55vh;
+  box-shadow: 8px 8px red;
+  border-radius: 5px;
+}
+
+.titulo {
+  font-family: "Bebas Neue", cursive;
+  font-size: 50px;
+  font-weight: 100;
+}
+
+.abas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 16px;
+}
+
+.aba.ativa {
+  background: transparent;
+  border: transparent;
+  color: white;
+  cursor: pointer;
+  font-family: "Bebas Neue", cursive;
+  font-size: 25px;
+}
+
+.aba.ativa:hover {
+  color: #ff0000;
+  transition: 0.2s;
+}
+.aba {
+  background: transparent;
+  border: transparent;
+  color: white;
+  cursor: pointer;
+  font-family: "Bebas Neue", cursive;
+  font-size: 25px;
+}
+
+.aba:hover {
+  color: #ff0000;
+  transition: 0.2s;
+}
+
+.aba-conteudo li {
+  list-style: none;
+}
+
+.aba-conteudo strong {
+  font-weight: 700;
+}
+
+.aba.ativa {
+  color: white;
+  border-bottom-color: #ff0000;
+}
+
+.aba-sep {
+  color: #555;
+}
+
+.aba-conteudo {
+  display: none;
+}
+.aba-conteudo.ativo {
+  display: block;
+}
+
+.filme-lista-info {
+  list-style: none;
+  line-height: 2;
+  font-size: 18px;
+}
+.filme-lista-info strong {
+  color: #ff4040;
+}
+
+.divisao {
+  margin: 10vh;
 }

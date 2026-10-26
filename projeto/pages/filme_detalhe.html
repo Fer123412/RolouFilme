@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %} {% load static %}
-<link rel="stylesheet" href="{% static 'midia/stylefilme.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/stylefilme.css' %}" />
 
 <section class="filme_dados">
   {% if movie.poster_url %}
@@ -12,8 +12,9 @@
   </div>
   {% endif %}
 
-  <div class="filme_dados">
-    <h1>{{ movie.titulo }} - {{movie.ano}}</h1>
+  <div class="filme_info">
+    <h1 class="titulo">{{ movie.titulo }} - {{movie.ano}}</h1>
+
     <div class="abas">
       <button type="button" class="aba ativa" data-alvo="aba-sinopse">
         SINOPSE
@@ -42,5 +43,14 @@
     </div>
   </div>
 </section>
-<hr />
+
+<div class="divisao">
+  <hr />
+</div>
+
+<section class="comentarios">
+  <h1>Comentarios</h1>
+  <input type="text" name="" id="" placeholder="Digite sua opinião" />
+</section>
+<script src="{% static 'js/script_filme.js' %}"></script>
 {% endblock %}
