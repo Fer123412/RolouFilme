@@ -89,3 +89,43 @@
 .divisao {
   margin: 10vh;
 }
+
+/*        COMENTARIOS         */
+.barra_comentario {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ff0000;
+  border-radius: 20px;
+  padding: 4px 16px;
+  margin-bottom: 30px;
+  background: rgba(255, 0, 0, 0.05);
+}
+
+.barra_comentario input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #ff4040;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  padding: 8px 0;
+}
+
+.barra_comentario input::placeholder {
+  color: #ff4040;
+}
+
+.barra_comentario button {
+  width: auto;
+  margin: 0;
+  padding: 0 4px;
+  border: none;
+  background: transparent;
+  color: #ff0000;
+  font-size: 20px;
+}
+
+.barra_comentario button:hover {
+  background: transparent;
+}

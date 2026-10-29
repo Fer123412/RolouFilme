@@ -33,7 +33,8 @@ class Review(models.Model):
 
 class Comentario(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comentarios")
-    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name="comentarios")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, null=True, blank=True, related_name="comentarios")
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, null=True,related_name="comentarios")
     parent_comentario = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True, related_name="respostas")
     texto_comentario = models.TextField()
     criado_em = models.DateTimeField(auto_now_add=True)

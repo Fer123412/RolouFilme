@@ -50,7 +50,35 @@
 
 <section class="comentarios">
   <h1>Comentarios</h1>
-  <input type="text" name="" id="" placeholder="Digite sua opinião" />
+
+  {% if user.is_authenticated %}
+  <form
+    method="post"
+    action="{% url 'comentar_filme' movie.id %}"
+    class="barra_comentario"
+  >
+    {% csrf_token %}
+    <input
+      type="text"
+      name="texto_comentario"
+      id=""
+      placeholder="Digite sua opinião..."
+      required
+      autocomplete="off"
+    />
+
+    <button type="submit" aria-label="Enviar">↵</button>
+  </form>
+
+  {% else %}
+  <p>Entre</p>
+  {% endif %} {% for c in comentarios %}
+  <div class="cometario_card" id="comentario-{{c.id}}">
+    <img src="" alt="avatar" />
+    <div class="comentario_corpo">
+      <strong></strong>
+    </div>
+  </div>
 </section>
 <script src="{% static 'js/script_filme.js' %}"></script>
 {% endblock %}

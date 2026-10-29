@@ -4,8 +4,11 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Avg
+from django.urls import reverse
 
-from .models import Movie, Review
+
+
+from .models import Movie, Review, Comentario, Curtir
 from .forms import ReviewForm, ComentarioForm
 from .tmdb import completar_detalhes
 # Create your views here.
@@ -33,6 +36,13 @@ def filme_detalhes(request, movie_id):
         .order_by("-criado_em")
     )
 
+    comentarios = (
+        movie.comentarios.filter(parent_comentario__isnull=True)
+        .select_related("user")
+        .prefetch_related("respostas__user", "curtidas", "respostas__curtidas")
+        .order_by("-criado_em")
+    )
+
     media = reviews.aggregate(m=Avg("nota_review"))["m"]
 
     return render(request, "filme_detalhe.html", {
@@ -41,7 +51,12 @@ def filme_detalhes(request, movie_id):
         "media": media,
         "review_form":ReviewForm(),
         "comentario_form": ComentarioForm(),
+        "comentarios": comentarios
     })
+
+def _voltar_aos_comentarios(movie_id):
+    return redirect(reverse("filme_detalhe", args=[movie_id]) + "#comentarios")
+
 
 @login_required
 def criar_review(request, movie_id):
@@ -69,6 +84,34 @@ def comentar(request, review_id):
             c.save()
 
     return redirect("filme_detalhe", movie_id=review.movie_id)
+
+@login_required
+def comentar_filme(request, movie_id):
+    movie = get_object_or_404(Movie, id=movie_id)
+
+    if request.method == "POST":
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            c = form.save(commit=False)
+            c.user = request.user
+            c.movie = movie
+
+            parent_id = request.POST.get("parent")
+            if parent_id:
+                parent = get_object_or_404(Comentario, id=parent_id, movie=movie)
+                c.parent_comentario = parent.parent_comentario or parent
+            c.save()
+        return _voltar_aos_comentarios(movie_id)
+
+@login_required
+def curtir_comentario(request, comentario_id):
+    comentario = get_object_or_404(Comentario, id=comentario_id)
+    if request.method == "POST":
+        curtida, criada = Curtir.objects.get_or_create(user=request.user, comentario=comentario)
+        if not criada:
+            curtida.delete()
+    return _voltar_aos_comentarios(comentario.movie_id)
+
 
 def cadastro(request):
     if request.method == 'POST':
