@@ -48,8 +48,8 @@
   <hr />
 </div>
 
-<section class="comentarios">
-  <h1>Comentarios</h1>
+<section class="comentarios" id="comentarios">
+  <h1 class="titulo_comentarios">Comentarios</h1>
 
   {% if user.is_authenticated %}
   <form
@@ -61,24 +61,118 @@
     <input
       type="text"
       name="texto_comentario"
-      id=""
       placeholder="Digite sua opinião..."
       required
       autocomplete="off"
     />
-
     <button type="submit" aria-label="Enviar">↵</button>
   </form>
-
   {% else %}
-  <p>Entre</p>
+  <p class="aviso"><a href="{% url 'login' %}">Entre</a> para comentar.</p>
   {% endif %} {% for c in comentarios %}
-  <div class="cometario_card" id="comentario-{{c.id}}">
-    <img src="" alt="avatar" />
-    <div class="comentario_corpo">
-      <strong></strong>
+  <div class="comentario_linha">
+    <img
+      src="{% static 'midia/User_vermelho.png' %}"
+      alt="avatar"
+      class="avatar"
+    />
+    <div class="comentario_card" id="comentario-{{ c.id }}">
+      <strong>{{ c.user.username|upper }}</strong>
+      <p>{{ c.texto_comentario|linebreaksbr }}</p>
+
+      <div class="comentario_acoes">
+        {% if user.is_authenticated %}
+        <button
+          type="button"
+          class="btn_link btn_responder"
+          data-alvo="resp-{{ c.id }}"
+        >
+          Responder
+        </button>
+        <form method="post" action="{% url 'curtir_comentario' c.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn_link">
+            Curtir ({{ c.curtidas.all|length }})
+          </button>
+        </form>
+        {% else %}
+        <span class="btn_link">Curtidas: {{ c.curtidas.all|length }}</span>
+        {% endif %}
+      </div>
+
+      {% if user.is_authenticated %}
+      <form
+        method="post"
+        action="{% url 'comentar_filme' movie.id %}"
+        class="form_resposta"
+        id="resp-{{ c.id }}"
+        hidden
+      >
+        {% csrf_token %}
+        <input type="hidden" name="parent" value="{{ c.id }}" />
+        <textarea
+          name="texto_comentario"
+          placeholder="Responder a {{ c.user.username }}..."
+          required
+        ></textarea>
+        <button type="submit" class="btn_comentar">Enviar</button>
+      </form>
+      {% endif %}
     </div>
   </div>
+
+  {% for r in c.respostas.all %}
+  <div class="comentario_linha resposta">
+    <div class="comentario_card" id="comentario-{{ r.id }}">
+      <strong>{{ r.user.username|upper }}</strong>
+      <p>{{ r.texto_comentario|linebreaksbr }}</p>
+
+      <div class="comentario_acoes">
+        {% if user.is_authenticated %}
+        <button
+          type="button"
+          class="btn_link btn_responder"
+          data-alvo="resp-{{ r.id }}"
+        >
+          Responder
+        </button>
+        <form method="post" action="{% url 'curtir_comentario' r.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn_link">
+            Curtir ({{ r.curtidas.all|length }})
+          </button>
+        </form>
+        {% else %}
+        <span class="btn_link">Curtidas: {{ r.curtidas.all|length }}</span>
+        {% endif %}
+      </div>
+
+      {% if user.is_authenticated %}
+      <form
+        method="post"
+        action="{% url 'comentar_filme' movie.id %}"
+        class="form_resposta"
+        id="resp-{{ r.id }}"
+        hidden
+      >
+        {% csrf_token %}
+        <input type="hidden" name="parent" value="{{ r.id }}" />
+        <textarea
+          name="texto_comentario"
+          placeholder="Responder a {{ r.user.username }}..."
+          required
+        ></textarea>
+        <button type="submit" class="btn_comentar">Enviar</button>
+      </form>
+      {% endif %}
+    </div>
+    <img src="{% static 'midia/User_azul.png' %}" alt="avatar" class="avatar" />
+  </div>
+  {% endfor %} {% empty %}
+  <p class="aviso">Ainda não há comentários. Comece a conversa!</p>
+  {% endfor %}
 </section>
+
+<script src="{% static 'js/script_comentarios.js' %}"></script>
 <script src="{% static 'js/script_filme.js' %}"></script>
 {% endblock %}
