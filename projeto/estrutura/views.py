@@ -1,18 +1,15 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.db.models import Avg
 from django.urls import reverse
-
-
-
 from .models import Movie, Review, Comentario, Curtir
 from .forms import ReviewForm, ComentarioForm
 from .tmdb import completar_detalhes
-# Create your views here.
 
+User = get_user_model()
 
 def home(request):
     filmes = Movie.objects.order_by('-id')[:20]
@@ -123,3 +120,13 @@ def cadastro(request):
     else:
         form = UserCreationForm()
     return render(request, 'cadastro.html', {'form': form})
+
+def perfil(request, username):
+    usuario = get_object_or_404(User, username=username)
+    context = {
+        "usuario": usuario,
+        "total_seguidores": usuario.seguidores.count(),
+        "total_seguindo": usuario.seguindo.count(),
+        "reviews": usuario.reviews.select_related("movie").order_by("-criado_em"),
+    }
+    return render(request, "perfil.html", context)

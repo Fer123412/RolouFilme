@@ -1,0 +1,39 @@
+{% extends 'base.html' %}{% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'styles/styleperfil.css'%}" />
+
+<div class="perfil_banner">
+  <div class="perfil_info">
+    <img
+      src="{% static 'images/perfil.png' %}"
+      alt="Foto de Perfil"
+      class="perfil_foto"
+    />
+
+    <div class="perfil_dados">
+      <h1 class="perfil_nome">{{ user.username }}</h1>
+      <div class="perfil_stats">
+        <div class="stat">
+          <span>{{ total_seguidores }}</span>
+          <a href="">Seguidores</a>
+        </div>
+        <div class="stat">
+          <span>{{ total_seguindo }}</span>
+          <a href="">Seguindo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="perfil_conteudo">
+  {% for review in reviews %}
+  <article class="perfil_review">
+    <h2>{{ review.titulo }}</h2>
+    <p>Nota: {{ review.nota_review }}</p>
+    <p>{{ review.texto_review }}</p>
+  </article>
+  {% empty %}
+  <p class="perfil_vazio">Nenhuma review ainda.</p>
+  {% endfor %}
+</div>
+{% endblock %}
