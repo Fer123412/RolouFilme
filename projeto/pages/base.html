@@ -38,7 +38,11 @@
         </a>
 
         {% if user.is_authenticated %}
-        <a href="" class="perfil_nav" title="{{ user.username }}">
+        <a
+          href="{% url 'perfil' user.username %}"
+          class="perfil_nav"
+          title="{{ user.username }}"
+        >
           <img src="{% static 'midia/User.png' %}" alt="perfil" />
         </a>
 
