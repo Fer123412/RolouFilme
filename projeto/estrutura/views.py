@@ -8,6 +8,7 @@ from django.urls import reverse
 from .models import Movie, Review, Comentario, Curtir
 from .forms import ReviewForm, ComentarioForm
 from .tmdb import completar_detalhes
+from django.core.paginator import Paginator
 
 User = get_user_model()
 
@@ -130,3 +131,37 @@ def perfil(request, username):
         "reviews": usuario.reviews.select_related("movie").order_by("-criado_em"),
     }
     return render(request, "perfil.html", context)
+
+def filmes(request):
+    lista = Movie.objects.all()
+
+    q = request.GET.get("q", "").strip()
+    ano = request.GET.get("ano", "")
+    ordem = request.GET.get("ordem", "titulo")
+
+    if q:
+        lista = lista.filter(titulo__icontains=q)
+    if ano.isdigit():
+        lista = lista.filter(ano=int(ano))
+
+    ordens = {
+        "titulo": "Título",
+        "ano": "Ano",
+        "-ano": "antigos",
+        "antigos": "ano"
+    }
+
+    lista = lista.order_by(ordens.get(ordem, "titulo"))
+
+    paginator = Paginator(lista, 12)
+    page_obj = paginator.get_page(request.GET.get("page"))
+
+    anos = Movie.objects.values_list("ano", flat=True).distinct().order_by("-ano")
+
+    return render(
+        request, "lista_filmes.html", {
+            "page_obj": page_obj,
+            "anos": anos,
+            "ordens": ordens,
+            "querystring": params.urlencode(),
+        })

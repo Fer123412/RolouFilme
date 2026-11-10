@@ -20,4 +20,6 @@ urlpatterns = [
     path("logout/", auth_views.LogoutView.as_view(), name='logout'),
 
     path("perfil/<str:username>", views.perfil, name="perfil"),
+
+    path("filmes/", views.filmes, name="filmes")
 ]
