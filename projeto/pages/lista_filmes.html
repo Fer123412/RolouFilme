@@ -1,1 +1,30 @@
-<h1>pagina de filmes</h1>
+{% extends 'base.html' %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'styles/styleslistafilmes.css' %}" />
+
+<section class="filmes_header">
+    <h1>Filmes</h1>
+    <hr />
+
+    <form method="get" class="filtros">
+        <input type="text" name="q" value="{{ q }}" placeholder="Pesquisar por título..." />
+
+        <select name="ano">
+            <option value="">Todos os anos</option>
+            {% for a in anos %}
+                <option value="{{ a }}" {% if ano == a|stringformat:"s" %}selected{% endif%}>{{ a }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="ordem">
+            <option value="titulo" {% if ordem == "titulo" %}selected{% endif %}>A-Z</option>
+            <option value="-titulo" {% if ordem == "recentes" %}selected{% endif %}>Mais recentes</option>
+            <option value="ano" {% if ordem == "antigos" %}selected{% endif %}>Mais antigos</option>
+        </select>
+
+        <button type="submit" class="botao_sair">Filtrar</button>
+        <a href="{% url 'filmes' %}" class="botao_sair">Limpar</a> 
+    </form>
+</section>
+
+<div class="grade_filmes"></div>
+{% endblock %}
