@@ -26,5 +26,37 @@
     </form>
 </section>
 
-<div class="grade_filmes"></div>
+<div class="grade_filmes">
+    {% for filme in page_obj %}
+    <a href="#" class="card_filme" title="{{ filme.titulo }} ({{ filme.ano }})">
+        {% if filme.poster_url %}
+            <img src="{{ filme.poster_url }}" alt="{{ filme.titulo }}"/>
+        {% else %}
+            <div class="sem_poster">{{ filme.titulo }}</div>
+        {% endif %}
+    </a>
+    {% empty %}
+        <p class="vazio">Nenhum filme encontrado.</p>
+    {% endfor %}
+</div>
+
+{% if page_obj.paginator.num_pages > 1 %}
+<div class="paginacao">
+    {% if page_obj.has_previous %}
+        <a href="?{% if querystring %}{{ querystring }}&{% endif %}pages={{ page_obj.previous_page_number }}">'</a>
+    {% endif %}
+
+    {% for n in page_obj.paginator.page_range %}
+        {% if n == page_obj.number %}
+            <span class="atual">{{ n }}</span>
+        {% else %}
+            <a href="?{% if querystring %}{{ querystring }}&{% endif %}pages={{ n }}">{{ n }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?{% if querystring %}{{ querystring }}&{% endif %}page={{ page_obj.next_page_number }}">›</a>
+  {% endif %}
+</div>
+{% endif %}
 {% endblock %}

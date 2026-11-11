@@ -1,0 +1,101 @@
+.filmes-header {
+  color: white;
+  text-align: center;
+  padding: 8vh 5vw 3vh;
+}
+
+.filmes-header h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.filtros input,
+.filtros select {
+  padding: 8px 12px;
+  background: #171717;
+  color: white;
+  border: 1px solid #ff0000;
+  border-radius: 18px;
+  font-family: "Poppins", sans-serif;
+}
+
+.limpar {
+  font-size: 14px;
+}
+
+.grade-filmes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-filme img,
+.sem-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 5px 5px 0 #ff0000;
+  transition: transform 0.3s;
+  display: block;
+}
+
+.card-filme:hover img {
+  transform: translateY(-6px);
+  animation: none;
+}
+
+.sem-poster {
+  background: #2c2c2c;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.vazio {
+  grid-column: 1 / -1;
+  color: white;
+  text-align: center;
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px 0 40px;
+}
+
+.paginacao a,
+.paginacao .atual {
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.paginacao .atual {
+  background: #ff0000;
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .grade-filmes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
